@@ -17,7 +17,6 @@ class Pycrypto(object):
         aes = AES.new(self.pad(self._key), mode=self._mode)
         encrypt_text = aes.encrypt(text)
         en_str = str(b2a_base64(encrypt_text), encoding='utf-8', errors='ignore')
-        self.write_cipher(en_str)
         return en_str
     
     def decrypt(self, en_text):
@@ -30,8 +29,8 @@ class Pycrypto(object):
         with open('cipher.txt', 'w') as f:
             f.write(cipher)
 
-    def read_cipher(self):
-        with open('cipher.txt', 'r') as f:
+    def read_cipher(self, path='cipher.txt'):
+        with open(path, 'r') as f:
             data = f.read()
         return data
             
